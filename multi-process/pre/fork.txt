@@ -1,0 +1,21 @@
++ process
+  - PID
+  - code
+  - data
+
+
+  PID = 123
+  int main(){
+  	pid = fork();
+	if(pid == 0)
+		puts("child");
+	else
+		puts("parent");
+  }
+
+
+  Parent				Child
+  PID = 123				PID = 124
+  int main()				int main()
+  {
+  	
