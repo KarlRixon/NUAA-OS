@@ -26,9 +26,10 @@ void *father_entry(void *arg)
 		while(plane == 0)
 			pthread_cond_wait(&wait_empty, &mutex);
 		puts("put apple");
+		pthread_cond_signal(&wait_apple);
 		sleep(1);
 		plane = 0;
-		pthread_cond_signal(&wait_apple);
+		
 		pthread_mutex_unlock(&mutex);
 		
 	}
@@ -43,9 +44,10 @@ void *mother_entry(void *arg)
 			pthread_cond_wait(&wait_empty, &mutex);
 		
 		puts("put orange");
+		pthread_cond_signal(&wait_orange);
 		sleep(1);
 		plane = 0;
-		pthread_cond_signal(&wait_orange);
+		
 		pthread_mutex_unlock(&mutex);
 		
     
@@ -61,9 +63,10 @@ void *son_entry(void *arg)
 			pthread_cond_wait(&wait_apple, &mutex);
 
 		puts("get apple");
+		pthread_cond_signal(&wait_empty);
 		sleep(1);
 		plane = 1;
-		pthread_cond_signal(&wait_empty);
+		
 		pthread_mutex_unlock(&mutex);
 		
     
@@ -79,9 +82,10 @@ void *daughter_entry(void *arg)
 			pthread_cond_wait(&wait_orange, &mutex);
 
 		puts("get orange");
+		pthread_cond_signal(&wait_empty);
 		sleep(1);
 		plane = 1;
-		pthread_cond_signal(&wait_empty);
+		
 		pthread_mutex_unlock(&mutex);
 		
     }
