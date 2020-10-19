@@ -21,7 +21,7 @@ int main(){
 	pid_t pid;
 
 	pid = fork();
-	if(pid = 0)
+	if(pid == 0)
 		child();
 	else
 		parent();
